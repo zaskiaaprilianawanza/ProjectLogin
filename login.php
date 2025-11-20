@@ -2,7 +2,7 @@
 session_start();
 
 // kalau sudah login, langsung ke dashboard
-if (isset($_SESSION['zaskiaaprilianawanza'])) {
+if (isset($_SESSION['username'])) {
   header("Location: dashboard.php");
   exit;
 }

@@ -7,12 +7,11 @@ if (isset($_SESSION['username'])) {
   exit;
 }
 
-// proses form
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// proses form login
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $_POST['username'] ?? '';
   $password = $_POST['password'] ?? '';
 
-  // login sederhana: username admin, password 123
   if ($username === 'admin' && $password === '123') {
     $_SESSION['username'] = $username;
     $_SESSION['role'] = 'Dosen';
@@ -25,16 +24,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Login</title></head>
+<head>
+<title>Login</title>
+<style>
+body { font-family: Arial; background: #f2f2f2; padding: 30px; }
+form { background: white; padding: 20px; width: 300px; border-radius: 8px; }
+input { width: 100%; padding: 8px; margin: 6px 0; }
+button { padding: 10px; margin-top: 10px; width: 48%; }
+h2 { color: #333; }
+</style>
+</head>
 <body>
-  <h2>Form Login</h2>
-  <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-  
-  <form method="post">
-    Username: <input type="text" name="username" required><br><br>
-    Password: <input type="password" name="password" required><br><br>
-    <button type="submit">Login</button>
-    <button type="reset">Batal</button>
-  </form>
+
+<h2>Form Login</h2>
+<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+
+<form method="post">
+  Username:
+  <input type="text" name="username" required>
+
+  Password:
+  <input type="password" name="password" required>
+
+  <button type="submit">Login</button>
+  <button type="reset">Batal</button>
+</form>
+
 </body>
 </html>
